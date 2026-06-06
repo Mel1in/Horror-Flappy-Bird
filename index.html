@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Horror Flappy Bird</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="menu">
+
+    <div class="menu-container">
+
+        <h1 id="title">
+            HORROR<br>
+            FLAPPY BIRD
+        </h1>
+
+        <button id="startBtn" class="menu-btn">
+            ▶ PLAY
+        </button>
+
+        <button id="shopBtn" class="menu-btn">
+            ★ SHOP
+        </button>
+
+        <button id="leaderboardBtn" class="menu-btn">
+            🏆 LEADERBOARD
+        </button>
+
+        <div id="record">
+            BEST SCORE: 0
+        </div>
+
+    </div>
+
+</div>
+
+<div id="shopModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>👻 SHOP</h2>
+
+        <p>⭐ Stars: <span id="shopStars">0</span></p>
+
+        <button id="buySkull" class="menu-btn">
+       💀 Skull Skin - 100⭐
+        </button>
+
+        <button class="menu-btn">
+            👻 Ghost Skin - 250⭐
+        </button>
+
+        <button class="menu-btn">
+            😈 Demon Skin - 500⭐
+        </button>
+
+        <button id="closeShop" class="menu-btn">
+            ❌ CLOSE
+        </button>
+
+    </div>
+
+</div>
+
+<div id="leaderboardModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>🏆 LEADERBOARD</h2>
+
+        <p>
+            Best Score:
+            <span id="bestScoreBoard">0</span>
+        </p>
+
+        <button id="closeLeaderboard"
+                class="menu-btn">
+            ❌ CLOSE
+        </button>
+
+    </div>
+
+</div>
+
+<canvas id="gameCanvas"></canvas>
+
+<script src="game.js"></script>
+
+<script>
+
+const shopBtn = document.getElementById("shopBtn");
+const leaderboardBtn =
+document.getElementById("leaderboardBtn");
+
+const shopModal =
+document.getElementById("shopModal");
+
+const leaderboardModal =
+document.getElementById("leaderboardModal");
+
+document.getElementById("gameCanvas")
+.style.display = "none";
+
+startBtn.addEventListener("click", () => {
+
+    menu.style.display = "none";
+
+    document.getElementById("gameCanvas")
+    .style.display = "block";
+
+});
+
+shopBtn.addEventListener("click", () => {
+
+    document.getElementById("shopStars")
+    .textContent =
+    localStorage.getItem("stars") || 0;
+
+    shopModal.style.display = "flex";
+
+});
+
+leaderboardBtn.addEventListener("click", () => {
+
+    document.getElementById(
+        "bestScoreBoard"
+    ).textContent =
+    localStorage.getItem("bestScore") || 0;
+
+    leaderboardModal.style.display =
+    "flex";
+
+});
+
+document.getElementById("closeShop")
+.addEventListener("click", () => {
+
+    shopModal.style.display = "none";
+
+});
+
+document.getElementById("closeLeaderboard")
+.addEventListener("click", () => {
+
+    leaderboardModal.style.display =
+    "none";
+
+});
+
+</script>
+<audio id="bgMusic" loop>
+    <source src="img/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", () => {
+    music.play();
+}, { once:true });
+</script>
+</body>
+</html>
